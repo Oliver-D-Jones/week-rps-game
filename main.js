@@ -1,67 +1,19 @@
 function play(choice){
-  let compChoice = "";
-  let playerChoice = ""
+  let compChoiceString = "";
+  let playerChoiceString = ""
+  let choiceNumber = parseInt(choice);
   let objPlayerOut=document.getElementById('playerChoice')
   let objCompOut=document.getElementById('compChoice')
   let objWinnerOut=document.getElementById('winner')
   
   let random = Math.floor(Math.random()*3);
-  let winner="";
-  objWinnerOut.textContent=winner;
-  if(random==0)
-    compChoice+="Rocks";
-  else if(random==1)
-    compChoice+="Paper";
-  else
-    compChoice+="Scissors"
-  switch(choice){
-    case "rock":
-      playerChoice+="Rocks"
-      break;
-    case "paper":
-      playerChoice+="Paper"
-      break;
-    case "scissors":
-      playerChoice+="Scissors"
-      break;
-  }
-  objCompOut.textContent=compChoice;
-  objPlayerOut.textContent=playerChoice;
+  compChoiceString = random == 0 ? "Rocks" : random == 1 ? "Paper" : "Scissors";
+  playerChoiceString = choiceNumber == 0 ? "Rocks" : choiceNumber == 1 ? "Paper" : "Scissors";
 
-  if(choice=="rock"){
-    if(random==0){
-      winner="It's a Tie."
-    }
-    else if(random==1){
-      winner="You Lose."
-    }
-    else{
-      winner="You Win!"
-    }
-  }
-  else if(choice=="paper"){
-    if(random==0){
-      winner="You Win!"
-    }
-    else if(random==1){
-      winner="It's a Tie."
-    }
-    else{
-      winner="You Lose."
-    }
-  }
-  else{
-    if(random==0){
-      winner="You Lose."
-    }
-    else if(random==1){
-      winner ="You Win!"
-    }
-    else{
-      winner="It's a Tie."
-    }
-
-  }
-
-  objWinnerOut.textContent=winner;
+  objCompOut.textContent=compChoiceString;
+  objPlayerOut.textContent=playerChoiceString;
+  objWinnerOut.textContent = winner(choiceNumber,random);
+}
+function winner(p,c){
+ return (p+1)%3 == c ? "You Lose." : p == c ? "It's a Tie." : "You Win!";
 }
